@@ -20,6 +20,8 @@ public class NovoContatoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_novo_contato);
 
+        setTitle("Novo Contato");
+
         EditText campoNome = findViewById(R.id.et_nome);
         EditText campoTelefone = findViewById(R.id.et_telefone);
         EditText campoEmail = findViewById(R.id.et_email);
@@ -38,7 +40,7 @@ public class NovoContatoActivity extends AppCompatActivity {
                 Pessoa contato = new Pessoa(nome, telefone, email);
                 dao.salvaContato(contato);
 
-                startActivity(new Intent(NovoContatoActivity.this, ListaContatosActivity.class));
+                finish();
             }
         });
     }
