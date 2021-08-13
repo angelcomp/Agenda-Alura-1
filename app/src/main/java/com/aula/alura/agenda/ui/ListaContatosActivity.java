@@ -14,24 +14,37 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class ListaContatosActivity extends AppCompatActivity {
 
+    FloatingActionButton fabNovoContato;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_contatos);
 
-        FloatingActionButton fabNovoContato = findViewById(R.id.fab_novo_contato);
+        configuraFloatingButton();
 
-        fabNovoContato.setColorFilter(Color.WHITE);
-        
-        Intent intent = new Intent(ListaContatosActivity.this, NovoContatoActivity.class);
         fabNovoContato.setOnClickListener(v ->
-                startActivity(intent)
+                adicionarNovoContato()
         );
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        atualizaLista();
+    }
+
+    private void adicionarNovoContato() {
+        Intent intent = new Intent(ListaContatosActivity.this, NovoContatoActivity.class);
+        startActivity(intent);
+    }
+
+    private void configuraFloatingButton() {
+        fabNovoContato = findViewById(R.id.fab_novo_contato);
+        fabNovoContato.setColorFilter(Color.WHITE);
+    }
+
+    private void atualizaLista() {
         ListView lista = findViewById(R.id.lv_lista);
         ContatoDAO dao = new ContatoDAO();
         lista.setAdapter(new ArrayAdapter<>(

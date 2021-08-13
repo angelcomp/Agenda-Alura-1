@@ -16,16 +16,4 @@ public class Pessoa {
     public String toString() {
         return nome;
     }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public String getEmail() {
-        return email;
-    }
 }
