@@ -1,10 +1,15 @@
 package com.aula.alura.agenda.ui;
 
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Bundle;
-
 import com.aula.alura.agenda.R;
+import com.aula.alura.agenda.models.Pessoa;
 
 public class NovoContatoActivity extends AppCompatActivity {
 
@@ -12,5 +17,28 @@ public class NovoContatoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_novo_contato);
+
+        EditText campoNome = findViewById(R.id.et_nome);
+        EditText campoTelefone = findViewById(R.id.et_telefone);
+        EditText campoEmail = findViewById(R.id.et_email);
+        Button btnSalvar = findViewById(R.id.btn_salvar);
+
+
+        btnSalvar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String nome = campoNome.getText().toString();
+                String telefone = campoTelefone.getText().toString();
+                String email = campoEmail.getText().toString();
+
+                Pessoa contato = new Pessoa(nome, telefone, email);
+
+                Toast.makeText(NovoContatoActivity.this,
+                        contato.getNome() + " - " +
+                                contato.getTelefone() + " - " +
+                                contato.getEmail(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
